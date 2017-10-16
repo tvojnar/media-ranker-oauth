@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   # post '/login', to: 'sessions#login'
   # post '/logout', to: 'sessions#logout', as: 'logout'
 
+  post '/logout', to: 'users#logout', as: 'logout'
+
   get '/auth/:provider/callback', to: 'users#login'
 
   resources :works

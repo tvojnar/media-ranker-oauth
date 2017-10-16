@@ -17,6 +17,7 @@ def save_flash(model)
 
   if saved
     flash[:status] = :success
+    # TODO: get this to actually print out the name of the user that was logged in! 
     flash[:message] = "Successfully created a new user, #{model.name}"
   else
     flash[:status] = :success

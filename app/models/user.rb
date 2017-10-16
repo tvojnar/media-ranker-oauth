@@ -4,12 +4,12 @@ class User < ApplicationRecord
 
   validates :username, uniqueness: true, presence: true
 
-  def self.from_auth_hash
+  def self.from_auth_hash(provider, auth_hash)
     # because we are in the User model we can create a new user with this syntax
     user = new
     # populate the new User's attributes with info from the auth_hash:
     user.provider = provider
-    user.uid = auth_hash['info']['uid']
+    user.uid = auth_hash['uid']
     user.name = auth_hash['info']['name']
     user.email = auth_hash['info']['email']
     user.username = auth_hash['info']['nickname']
