@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     # DPR: supposedly this will actually render a 404 page in production
     raise ActionController::RoutingError.new('Not Found')
   end
-  
+
 protected
 def save_flash(model)
   saved = model.save
