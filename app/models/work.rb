@@ -50,4 +50,6 @@ private
       self.category = self.category.downcase.singularize
     end
   end
+
+
 end

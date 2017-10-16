@@ -16,6 +16,7 @@ class WorksController < ApplicationController
   end
 
   def new
+    # QUESTION: Do I need to add extra protection here since a user can't get to this page unless they are logged in??
     @work = Work.new
   end
 
@@ -40,7 +41,19 @@ class WorksController < ApplicationController
   end
 
   def edit
-  end
+    # the current logged in user will be returned (@login_user)
+    find_user
+
+    # TODO: move this find_by into a method in the Work model?
+    # check that the user created the work they are trying to edit
+    unless Work.find_by(id: params[:id]).user_id == @login_user.id
+      # if they did not create the work, then give them a flash message and redirect them to the works_path
+      flash[:ststus] = :failure
+      flash[:message] = "You can only edit works that you created"
+      redirect_to works_path
+    end
+    # if they did create the work they will be able to view to edit view and edit the work! 
+  end # edit
 
   def update
     @work.update_attributes(media_params)
