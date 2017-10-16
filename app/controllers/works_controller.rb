@@ -52,7 +52,7 @@ class WorksController < ApplicationController
       flash[:message] = "You can only edit works that you created"
       redirect_to works_path
     end
-    # if they did create the work they will be able to view to edit view and edit the work! 
+    # if they did create the work they will be able to view to edit view and edit the work!
   end # edit
 
   def update
@@ -70,10 +70,20 @@ class WorksController < ApplicationController
   end
 
   def destroy
-    @work.destroy
-    flash[:status] = :success
-    flash[:result_text] = "Successfully destroyed #{@media_category.singularize} #{@work.id}"
-    redirect_to root_path
+    find_user
+    if Work.find_by(id: params[:id]).user_id == @login_user.id
+      @work.destroy
+      flash[:status] = :success
+      flash[:result_text] = "Successfully destroyed #{@media_category.singularize} #{@work.id}"
+      redirect_to root_path
+    else
+      flash[:status] = :failure
+      flash[:message] = "You can only delete works that you created"
+      redirect_to works_path
+    end
+
+
+
   end
 
   def upvote
