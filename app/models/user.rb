@@ -14,6 +14,9 @@ class User < ApplicationRecord
     user.name = auth_hash['info']['name']
     user.email = auth_hash['info']['email']
     user.username = auth_hash['info']['nickname']
+    user.username = auth_hash['info']['name']
+    # user.oauth_token = auth_hash['credentials']["token"]
+    # user.oauth_expires_at = Time.at(auth_hash["credentials"]["expires_at"]
     # return the UNSAVED user to the SessionsController
     # the user will be saved in the save_flash method!
     return user
