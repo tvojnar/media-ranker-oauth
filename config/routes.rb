@@ -9,9 +9,10 @@ Rails.application.routes.draw do
   post '/logout', to: 'users#logout', as: 'logout'
 
   get '/auth/:provider/callback', to: 'users#login'
-  # get 'auth/failure', to: redirect('/')
 
-  resources :sessions, only: [:create, :destroy]
+  # NOTE: routes that I don't need
+  # get 'auth/failure', to: redirect('/')
+  # resources :sessions, only: [:create, :destroy]
 
   resources :works
   post '/works/:id/upvote', to: 'works#upvote', as: 'upvote'

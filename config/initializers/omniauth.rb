@@ -2,8 +2,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   provider :github, ENV["GITHUB_CLIENT_ID"], ENV["GITHUB_CLIENT_SECRET"], scope: "user:email"
 end
 
-OmniAuth.config.full_host = 'http://localhost:3000'
-
 OmniAuth.config.logger = Rails.logger
 
 Rails.application.config.middleware.use OmniAuth::Builder do

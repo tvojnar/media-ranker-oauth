@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
   def login
     auth_hash = request.env['omniauth.auth']
-    
+
     if auth_hash['uid']
       user = User.find_by(provider: params[:provider ], uid: auth_hash['uid'])
       if user.nil?
